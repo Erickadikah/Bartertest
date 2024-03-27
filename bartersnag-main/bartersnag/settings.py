@@ -18,6 +18,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '4787a798fd3f4594bc005ffab40e260e.vfs.cloud9.eu-west-1.amazonaws.com',
+    '127.0.0.1',
     ]
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
