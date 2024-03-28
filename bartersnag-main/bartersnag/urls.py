@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from barter.views import all_barters
 
 from authentication.views import index
 
@@ -11,4 +12,5 @@ urlpatterns = [
     path('', include('authentication.urls')),
     path('barters/', include('barter.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('barters/', all_barters, name='all_barters'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
