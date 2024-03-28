@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import NewBarterForm
 from .models import Category, Barter
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def info(request, pk):
@@ -23,6 +24,7 @@ def new(request):
         if form.is_valid():
             barter = form.save(commit=False)
             barter.created_by = request.user
+            print("creator b", barter.created_by)
             barter.save()
 
             return redirect('barter:info', pk=barter.id)
@@ -34,3 +36,11 @@ def new(request):
         'title': 'New barter',
     })
 
+#get all barters
+@csrf_exempt
+def all_barters(request):
+    barters = Barter.objects.filter()
+
+    return JsonResponse({
+        'barters': list(barters.values())
+    })
